@@ -9,17 +9,28 @@ soup = BeautifulSoup(response.content, 'html.parser')
 title = soup.find(id="firstHeading")
 print(title.text)
 
+print()
+
 # Get all the links
 allLinks = soup.find(id="bodyContent").find_all("a")
 
-#for link in allLinks:
-	#print(link)
+[print(link.get('href')) for link in allLinks[:10]]
+    
+print()
     
 #Get the first link
+firstLink = soup.select_one("#bodyContent a")
+print(firstLink.get('href'))
 
-#Get the next link
+print()
 
-#Get the previous link
+#Get the link number...
+anotherLink = soup.select("#bodyContent a")[20]
+print(anotherLink.get('href'))
+
+print()
 
 #Get section titles
+sections = soup.find_all("span", class_="mw-headline")
+[print(section.text) for section in sections]
 
