@@ -9,7 +9,8 @@ response = openai.Completion.create(
   prompt="What is Python good for?"
 )
 
-print(response)
+#print(response)
+print(response['choices'][0]['text'])
 
 response = openai.Completion.create(
   model="text-davinci-003",
@@ -17,7 +18,8 @@ response = openai.Completion.create(
   prompt="What is Python bad for?"
 )
 
-print(response)
+#print(response)
+print(response['choices'][0]['text'])
 
 response = openai.Completion.create(
   model="text-davinci-003",
@@ -25,7 +27,8 @@ response = openai.Completion.create(
   prompt="Create Python code for web scraping of wiki page"
 )
 
-print(response)
+#print(response)
+print(response['choices'][0]['text'])
 
 input("Press Enter to continue...")
 
