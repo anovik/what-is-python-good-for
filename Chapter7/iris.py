@@ -51,7 +51,11 @@ print(accuracy_score(y_pred, y_test))
 print(classification_report(y_pred, y_test))
 
 
-kmeans = KMeans(n_clusters=3)
-kmeans.fit(X_train, y_train)
+kmeans = KMeans(n_clusters=3, random_state=42)
+kmeans.fit(X_train)
 
 y_pred = kmeans.predict(X_test)
+
+y_test.replace({'setosa': 0, 'versicolor':2, 'virginica':1}, inplace=True)
+
+print(classification_report(y_test, y_pred))
