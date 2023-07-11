@@ -5,7 +5,7 @@ def compressJpeg(file):
     filepath = os.path.join(os.getcwd(), 
                             file)
                             
-    print(os.path.getsize(filepath)    
+    print(os.path.getsize(filepath))    
                             
     picture = Image.open(filepath)   
    
@@ -17,7 +17,7 @@ def compressJpeg(file):
     newFilePath = os.path.join(os.getcwd(), 
                             "compressed_" + file)
                             
-    print(os.path.getsize(newFilePath)    
+    print(os.path.getsize(newFilePath))    
     return
     
 currentdir = os.getcwd()
