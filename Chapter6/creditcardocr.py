@@ -3,6 +3,13 @@ import numpy as np
 import imutils
 import cv2
 
+def getCountours(image):
+	countours = cv2.findContours(image, cv2.RETR_EXTERNAL,
+	cv2.CHAIN_APPROX_SIMPLE)
+	countours = imutils.grab_contours(countours)
+	countours = contours.sort_contours(countours, method="left-to-right")[0]
+	return countours
+
 # Step 1. Image preparation
 
 image = cv2.imread("fake-credit-card.jpeg")
@@ -36,9 +43,7 @@ cv2.imwrite('thresh.png',thresh)
 
 # Step 2. Getting locations of digit groups
 
-cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
-	cv2.CHAIN_APPROX_SIMPLE)
-cnts = imutils.grab_contours(cnts)
+cnts = getCountours(thresh.copy())
 locs = []
 
 for (i, c) in enumerate(cnts):
@@ -59,10 +64,8 @@ ocrA = cv2.threshold(ocrA, 10, 255, cv2.THRESH_BINARY_INV)[1]
 
 cv2.imwrite('ocrA.png',ocrA)
 
-templateCountours = cv2.findContours(ocrA.copy(), cv2.RETR_EXTERNAL,
-	cv2.CHAIN_APPROX_SIMPLE)
-templateCountours = imutils.grab_contours(templateCountours)
-templateCountours = contours.sort_contours(templateCountours, method="left-to-right")[0]
+templateCountours = getCountours(ocrA.copy())
+
 digits = {}
 
 for (i, c) in enumerate(templateCountours):
@@ -79,11 +82,7 @@ for (i, (gX, gY, gW, gH)) in enumerate(locs):
 	group = gray[gY - 5 : gY + gH + 5, gX - 5 : gX + gW + 5 ]
 	group = cv2.threshold(group, 0, 255,
 		cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]	
-	digitCountours = cv2.findContours(group.copy(), cv2.RETR_EXTERNAL,
-		cv2.CHAIN_APPROX_SIMPLE)
-	digitCountours = imutils.grab_contours(digitCountours)
-	digitCountours = contours.sort_contours(digitCountours,
-		method="left-to-right")[0]
+	digitCountours = getCountours(group.copy())
 	
 	for c in digitCountours:	
 		(x, y, w, h) = cv2.boundingRect(c)
