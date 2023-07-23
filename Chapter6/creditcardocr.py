@@ -3,7 +3,7 @@ import numpy as np
 import imutils
 import cv2
 
-def getCountours(image):
+def getContours(image):
 	countours = cv2.findContours(image, cv2.RETR_EXTERNAL,
 	cv2.CHAIN_APPROX_SIMPLE)
 	countours = imutils.grab_contours(countours)
@@ -43,7 +43,7 @@ cv2.imwrite('thresh.png',thresh)
 
 # Step 2. Getting locations of digit groups
 
-cnts = getCountours(thresh.copy())
+cnts = getContours(thresh.copy())
 locs = []
 
 for (i, c) in enumerate(cnts):
@@ -64,7 +64,7 @@ ocrA = cv2.threshold(ocrA, 10, 255, cv2.THRESH_BINARY_INV)[1]
 
 cv2.imwrite('ocrA.png',ocrA)
 
-templateCountours = getCountours(ocrA.copy())
+templateCountours = getContours(ocrA.copy())
 
 digits = {}
 
@@ -82,7 +82,7 @@ for (i, (gX, gY, gW, gH)) in enumerate(locs):
 	group = gray[gY - 5 : gY + gH + 5, gX - 5 : gX + gW + 5 ]
 	group = cv2.threshold(group, 0, 255,
 		cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]	
-	digitCountours = getCountours(group.copy())
+	digitCountours = getContours(group.copy())
 	
 	for c in digitCountours:	
 		(x, y, w, h) = cv2.boundingRect(c)
