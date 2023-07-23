@@ -4,11 +4,11 @@ import imutils
 import cv2
 
 def getContours(image):
-	countours = cv2.findContours(image, cv2.RETR_EXTERNAL,
+	cntrs = cv2.findContours(image, cv2.RETR_EXTERNAL,
 	cv2.CHAIN_APPROX_SIMPLE)
-	countours = imutils.grab_contours(countours)
-	countours = contours.sort_contours(countours, method="left-to-right")[0]
-	return countours
+	cntrs = imutils.grab_contours(cntrs)
+	cntrs = contours.sort_contours(cntrs, method="left-to-right")[0]
+	return cntrs
 
 # Step 1. Image preparation
 
