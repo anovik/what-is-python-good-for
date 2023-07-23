@@ -80,6 +80,7 @@ output = []
 for (i, (gX, gY, gW, gH)) in enumerate(locs):	
 	groupOutput = []	
 	group = gray[gY - 5 : gY + gH + 5, gX - 5 : gX + gW + 5 ]
+	group = cv2.GaussianBlur(group,(5,5), 0)
 	group = cv2.threshold(group, 0, 255,
 		cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]	
 	digitCountours = getContours(group.copy())
@@ -103,5 +104,5 @@ for (i, (gX, gY, gW, gH)) in enumerate(locs):
 
 
 print("Credit Card #: {}".format("".join(output)))
-cv2.imshow("Image", image)
-cv2.waitKey(0)
+
+cv2.imwrite('result.png', image)
