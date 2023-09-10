@@ -1,0 +1,15 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Details about {{ currentchapter.name }} 
+{% endblock %}
+
+
+{% block content %}
+  <h1>{{ currentchapter.name }} </h1>
+  
+  <p>{{ currentchapter.description }}</p>
+   
+  <p>Back to <a href="/chapters">Chapters</a></p>
+  
+{% endblock %}

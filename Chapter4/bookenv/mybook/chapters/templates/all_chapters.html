@@ -1,0 +1,16 @@
+{% extends "master.html" %}
+
+{% block title %}
+  What Is Python Good For? The list of all chapters.
+{% endblock %}
+
+
+{% block content %}
+  <h1>Chapters</h1>
+  
+  <ul>
+    {% for x in allchapters %}
+      <li><a href="chapter/{{ x.id }}">{{ x.name }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
