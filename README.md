@@ -2,7 +2,9 @@
 
 Python code samples for the book "What Is Python Good For?" by Anna Novikova.
 
-https://www.amazon.com/dp/B0CJ5GKJ9X
+To know more about the book, visit: https://whatispythongoodfor.com/
+
+To buy the book, go to Amazon: https://www.amazon.com/dp/B0CJ5GKJ9X
 
 The book describes the areas where it is wise to use Python and its libraries. Each chapter represents an area where you can find Python useful.
 
